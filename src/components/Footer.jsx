@@ -53,7 +53,7 @@ export default function Footer() {
                     <div className="flex flex-col lg:flex-row justify-between w-full">
                         <div className="flex flex-col lg:flex-row items-center gap-10">
                             <a className="font-bold" href="tel:+84012500700">8(4012) 500-700</a>
-                            <button onClick={() => setIsModalOpen(true)} className="w-full bg-[#FFCB00] text-white text-center py-2 rounded-lg hover:border-[#ffb233] hover:bg-[#ffb233]">Проверить заявку</button>
+                            <button onClick={() => setIsModalOpen(true)} className="bg-[#FFCB00] text-white text-center py-2 px-5 rounded-lg hover:border-[#ffb233] hover:bg-[#ffb233]">Проверить заявку</button>
                         </div>
                         <div className="flex mt-10 lg:mt-0 gap-5 items-center">
                             <BsTelegram size={30} color="#0088CC" />

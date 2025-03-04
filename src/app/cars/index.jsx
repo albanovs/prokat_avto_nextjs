@@ -89,9 +89,9 @@ export default function Cars({ data }) {
                         <div className="mt-4">
                             <h3 className="text-lg font-semibold">{car.model}</h3>
                             <div className='flex items-start justify-between'>
-                                <p className="text-gray-500 text-[12px]">Год выпуска: {car.year}</p>
-                                <p className="text-gray-500 text-[12px]">Гос. номер: {car.number}</p>
-                                <p className="text-gray-500 text-[12px]">Город: {car.city_id && cities.find(city => city.city_id === car.city_id)?.title}</p>
+                                <p className="text-gray-500 text-[9px] lg:text-[12px]">Год выпуска: {car.year}</p>
+                                <p className="text-gray-500 text-[9px] lg:text-[12px]">Гос. номер: {car.number}</p>
+                                <p className="text-gray-500 text-[9px] lg:text-[12px]">Город: {car.city_id && cities.find(city => city.city_id === car.city_id)?.title}</p>
                             </div>
                             <div>
                                 <button onClick={() => handleCarClick(car)} className="w-full border-[#FFCB00] border text-[#FFCB00] text-center py-2 rounded-lg mt-4 hover:border-[#ffb233] hover:text-[#ffb233]">Подробнее</button>

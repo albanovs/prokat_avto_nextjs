@@ -46,7 +46,7 @@ export default function Header() {
     return (
         <header className="lg:static fixed top-0 left-0 w-full bg-white shadow-md z-50 lg:pl-20 lg:pr-20">
             <div className="container mx-auto flex justify-between items-center px-6 py-4">
-                <Link href="/" className="shrink-0 pr-10">
+                <Link href="/" className="shrink-0 lg:pr-10">
                     <Image src="/logo.png" alt="Logo" width={100} height={100} />
                 </Link>
 
@@ -56,7 +56,7 @@ export default function Header() {
                             <a className="font-bold" href="tel:+84012500700">8(4012) 500-700</a>
                             <button
                                 onClick={() => setIsModalOpen(true)}
-                                className="w-full bg-[#FFCB00] text-white text-center py-2 rounded-lg hover:border-[#ffb233] hover:bg-[#ffb233]">Проверить заявку</button>
+                                className="bg-[#FFCB00] text-white text-center py-2 px-5 rounded-lg hover:border-[#ffb233] hover:bg-[#ffb233]">Проверить заявку</button>
                         </div>
                         <div className="flex gap-5 items-center">
                             <BsTelegram size={30} color="#0088CC" />
@@ -66,7 +66,7 @@ export default function Header() {
                     </div>
                     <button
                         onClick={() => setIsModalOpen(true)}
-                        className="lg:hidden text-center py-2 rounded-lg hover:border-[#ffb233]">Проверить заявку</button>
+                        className="lg:hidden text-center text-sm w-full rounded-lg underline">Проверить заявку</button>
                     <nav className="hidden md:flex justify-between w-full">
                         {navLinks.map((link) => (
                             <Link key={link.href} href={link.href} className="text-gray-600 text-sm font-semibold uppercase hover:text-[#FFCB00] transition">
@@ -76,7 +76,7 @@ export default function Header() {
                     </nav>
                 </div>
                 <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <X size={28} /> : <Menu size={28} />}
+                    {isOpen ? <X size={28} /> : <Menu size={28} className="ml-3" />}
                 </button>
             </div>
             <AnimatePresence>
