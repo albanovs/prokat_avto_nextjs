@@ -36,7 +36,7 @@ export default function Home() {
         </h1>
         <div className="flex items-center lg:flex-row flex-col justify-center lg:mt-[150px] mt-[90px] lg:px-10 px-5">
           <div className="flex lg:items-start flex-col gap-3 max-w-lg">
-            <h2 className="lg:text-4xl text-center lg:text-start text-xl font-bold uppercase">Аренда автомобилей</h2>
+            <h2 className="lg:text-4xl mt-10 lg:mt-0 text-center lg:text-start text-xl font-bold uppercase">Аренда автомобилей</h2>
             <h3 className="text-xl text-center lg:font-bold">На все случаи жизни</h3>
             <p className="text-center lg:text-start text-sm">
               Новые машины ведущих мировых производителей: Renault, Hyundai, Volkswagen, Opel, Chevrolet, Kia и другие.
