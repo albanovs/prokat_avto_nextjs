@@ -55,7 +55,7 @@ export default function CarSlider() {
                         breakpoints={{
                             640: { slidesPerView: 2 },
                             768: { slidesPerView: 4 },
-                            1024: { slidesPerView: 6 },
+                            1024: { slidesPerView: 7 },
                         }}
                         modules={[Navigation]}
                         className="my-4"
@@ -94,7 +94,7 @@ export default function CarSlider() {
                         breakpoints={{
                             640: { slidesPerView: 2 },
                             768: { slidesPerView: 4 },
-                            1024: { slidesPerView: 6 },
+                            1024: { slidesPerView: 7 },
                         }}
                         modules={[Navigation]}
                         className="my-4"

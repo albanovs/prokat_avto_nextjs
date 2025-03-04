@@ -4,22 +4,52 @@ import { useEffect, useState } from 'react';
 import { fetchCars, fetchCarTariffs, fetchCities } from '../utils/api';
 import { Pagination } from './pagination';
 import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import './style.css'
 
 export default function Cars({ data }) {
     const [cars, setCars] = useState([]);
     const [selectedCar, setSelectedCar] = useState(null);
     const [carTariffs, setCarTariffs] = useState({});
-    const [currentPage, setCurrentPage] = useState(1);
     const [cities, setCities] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [authToken, setAuthToken] = useState(null);
     const carsPerPage = 12;
     const router = useRouter();
     const isDataValidArray = Array.isArray(data);
     const filteredCars = isDataValidArray ? (data.length > 0 ? cars.filter(car => data.includes(car.car_id)) : []) : cars;
 
     useEffect(() => {
-        fetchCars().then(data => setCars(data.cars));
-        fetchCities().then(data => setCities(data.cities));
-    }, []);
+        Cookies.get('authToken') ? setAuthToken(Cookies.get('authToken')) : setAuthToken(null);
+        if (authToken) {
+            const loadData = async () => {
+                try {
+                    const [carsData, citiesData] = await Promise.all([fetchCars(), fetchCities()]);
+                    setCars(carsData.cars);
+                    setCities(citiesData.cities);
+                } catch (error) {
+                    console.error("Ошибка загрузки данных", error);
+                } finally {
+                    setLoading(false);
+                }
+            };
+            loadData();
+        } else {
+            const getToken = async () => {
+                try {
+                    const response = await fetch('/api/auth', {
+                        method: 'GET',
+                    });
+                    const data = await response.json();
+                    setAuthToken(data.token);
+                } catch (error) {
+                    console.error("Ошибка получения токена", error);
+                }
+            };
+            getToken();
+        }
+    }, [authToken]);
 
     const handleCarClick = (car) => {
         setSelectedCar(car);
@@ -42,6 +72,14 @@ export default function Cars({ data }) {
         router.push(`/booking/${car.car_id}`);
     }
 
+    if (loading) {
+        return (
+            <div className="loader-overlay">
+                <div className="loader-spinner"></div>
+            </div>
+        );
+    }
+
     return (
         <div className="text-center p-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
@@ -61,7 +99,7 @@ export default function Cars({ data }) {
                             </div>
                         </div>
                     </div>
-                )) : "Загружаем данные..."}
+                )) : "Нет доступных автомобилей."}
             </div>
             <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
             {selectedCar && (

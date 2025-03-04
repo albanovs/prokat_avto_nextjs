@@ -23,10 +23,9 @@ export async function POST() {
       console.log("Сохраняем токен в cookies:", data.AccessToken);
 
       cookies().set("authToken", data.AccessToken, {
-        httpOnly: true,
         secure: true,
         path: "/",
-        maxAge: 60 * 60 * 24 * 365 * 10, // 10 лет
+        maxAge: 60 * 60 * 24 * 365 * 10,
       });
 
       console.log("Cookies после установки:", cookies().getAll());

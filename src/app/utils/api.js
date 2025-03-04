@@ -3,10 +3,7 @@
 import { cookies } from 'next/headers';
 const API_URL = 'http://78.36.203.128:50500/data_api';
 
-// const getAuthToken = () => (typeof window !== "undefined" ? localStorage.getItem('tokencarprokat') : '');
-
 const fetchWithAuth = async (url, options = {}) => {
-    // const authToken = getAuthToken();
     const authToken = cookies().get('authToken')?.value;
     if (!authToken) throw new Error('Unauthorized: No token available');
 
