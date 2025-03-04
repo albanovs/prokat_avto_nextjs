@@ -35,7 +35,7 @@ export default function ReviewsSlider() {
 
     return (
         <section className="max-w-6xl mx-auto text-center py-10 px-4 relative">
-            <h2 className="text-4xl font-bold mb-10">ОТЗЫВЫ</h2>
+            <h2 className="text-4xl font-bold mb-20">ОТЗЫВЫ</h2>
             <div className="relative">
                 <Swiper
                     modules={[Navigation, Pagination, Autoplay]}
@@ -67,16 +67,15 @@ export default function ReviewsSlider() {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                {/* Кастомные стрелки */}
-                <div className="hidden absolute top-1/2 left-0 transform -translate-y-1/2 lg:flex justify-between w-full px-4 pointer-events-none">
+                <div className="absolute top-[-50px] lg:top-40 left-0 flex lg:justify-between justify-center gap-5 w-full px-4 pointer-events-none">
                     <button
                         onClick={() => swiperRef.current?.slidePrev()}
-                        className="prev-btn text-[#FFCB00] text-3xl z-50 pointer-events-auto absolute left-[-50px]">
+                        className="prev-btn text-[#FFCB00] text-3xl pointer-events-auto lg:absolute lg:left-[-50px]">
                         <GrPrevious color='[#FFCB00]' />
                     </button>
                     <button
                         onClick={() => swiperRef.current?.slideNext()}
-                        className="next-btn text-[#FFCB00] text-3xl z-50 pointer-events-auto absolute right-[-50px]">
+                        className="next-btn text-[#FFCB00] text-3xl pointer-events-auto lg:absolute lg:right-[-50px]">
                         <GrNext color='[#FFCB00]' />
                     </button>
                 </div>
