@@ -45,7 +45,7 @@ export default function Cars({ data }) {
     return (
         <div className="text-center p-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
-                {currentCars.map(car => (
+                {currentCars.length ? currentCars.map(car => (
                     <div key={car.car_id} className="bg-white flex flex-col justify-between rounded-lg shadow-lg p-4 w-[413] h-[380px]">
                         <img className="w-full h-40 object-cover rounded-lg" src={car.photo_guid ? `http://78.36.203.128:50500/data_api/${car.photo_guid}` : '/image_about.png'} alt={car.model} />
                         <div className="mt-4">
@@ -61,7 +61,7 @@ export default function Cars({ data }) {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) : "Загружаем данные..."}
             </div>
             <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
             {selectedCar && (

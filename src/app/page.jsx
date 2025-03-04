@@ -42,7 +42,7 @@ export default function Home() {
               Новые машины ведущих мировых производителей: Renault, Hyundai, Volkswagen, Opel, Chevrolet, Kia и другие.
               Автомобили разных классов: эконом, стандарт, бизнес, премиум.
             </p>
-            <Link href="/cars" className="bg-[#FFCB00] hover:bg-[#ffb233] text-white font-bold py-3 px-6 rounded-lg">Арендовать автомобиль</Link>
+            <Link href="/cars" className="bg-[#FFCB00] text-center hover:bg-[#ffb233] text-white font-bold py-3 px-6 rounded-lg">Арендовать автомобиль</Link>
           </div>
           <div className="ml-10 flex-shrink-0">
             <Image
