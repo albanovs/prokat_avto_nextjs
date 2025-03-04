@@ -13,10 +13,11 @@ import { GrLinkNext } from "react-icons/gr";
 const categories = [
     { name: "Седаны", image: "/sedan.png" },
     { name: "Внедорожники", image: "/suv.png" },
+    { name: "Комфорт", image: "/comfort.png" },
     { name: "Минивэны", image: "/minivan.png" },
     { name: "Спорткары", image: "/sportcar.png" },
     { name: "Эконом", image: "/ekonom.png" },
-    { name: "Комфорт", image: "/comfort.png" },
+    { name: "Эконом", image: "/ekonom.png" },
     { name: "Комфорт", image: "/comfort.png" },
 ];
 
