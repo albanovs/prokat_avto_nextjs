@@ -70,12 +70,12 @@ export default function Footer() {
                     </nav>
                 </div>
             </div>
-            <div className="container mx-auto flex justify-between  items-center px-6 py-4">
+            <div className="container mx-auto flex flex-col gap-5 lg:flex-row justify-between  items-center px-6 py-4">
                 <div>
-                    <a href="" className="text-[12px]">Политика конфиденциальности</a>
+                    <a href="" className="text-[10px] lg:text-[12px]">Политика конфиденциальности</a>
                 </div>
                 <div>
-                    <a className="text-[12px] flex gap-2 items-center" href="https://xo-webstudio.ru/">
+                    <a className="lg:text-[12px] text-[10px] flex gap-2 items-center" href="https://xo-webstudio.ru/">
                         <Image src="/xo.png" alt="XO Studio" width={30} height={30} />
                         Разработано маркетинговым <br />
                         агенством XO-STUDIO
