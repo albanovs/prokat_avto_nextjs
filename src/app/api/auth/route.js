@@ -13,14 +13,12 @@ export async function POST() {
     });
 
     const data = await response.json();
-    console.log("Ответ от сервера:", data);
 
     if (!response.ok) {
       return Response.json({ error: "Ошибка запроса" }, { status: response.status });
     }
 
     if (data?.AccessToken) {
-      console.log("Сохраняем токен в cookies:", data.AccessToken);
 
       cookies().set("authToken", data.AccessToken, {
         secure: true,
@@ -28,13 +26,11 @@ export async function POST() {
         maxAge: 60 * 60 * 24 * 365 * 10,
       });
 
-      console.log("Cookies после установки:", cookies().getAll());
       return Response.json({ success: true });
     }
 
     return Response.json({ error: "Ошибка получения токена" }, { status: 400 });
   } catch (error) {
-    console.error("Ошибка сети:", error);
     return Response.json({ error: "Ошибка сети" }, { status: 500 });
   }
 }
