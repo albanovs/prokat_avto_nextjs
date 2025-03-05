@@ -57,6 +57,8 @@ export default function Header() {
                             <button
                                 onClick={() => setIsModalOpen(true)}
                                 className="bg-[#FFCB00] text-white text-center py-2 px-5 rounded-lg hover:border-[#ffb233] hover:bg-[#ffb233]">Проверить заявку</button>
+                            <button
+                                className="border border-[#FFCB00] text-[#FFCB00] text-center py-2 px-5 rounded-lg"><a href="http://78.36.203.128:50060">Личный кабинет</a></button>
                         </div>
                         <div className="flex gap-5 items-center">
                             <BsTelegram size={30} color="#0088CC" />
@@ -88,6 +90,10 @@ export default function Header() {
                         transition={{ duration: 0.3 }}
                         className="md:hidden absolute top-16 left-0 w-full bg-white shadow-md"
                     >
+                        <div className="w-full justify-center flex mt-10">
+                            <button
+                                className="border border-[#FFCB00] text-[#FFCB00] text-center py-2 px-5 rounded-lg"><a href="http://78.36.203.128:50060">Личный кабинет</a></button>
+                        </div>
                         <nav className="flex flex-col items-center space-y-4 py-6">
                             {navLinks.map((link) => (
                                 <Link key={link.href} href={link.href} className="text-gray-700 hover:text-gray-900 text-lg" onClick={() => setIsOpen(false)}>

@@ -27,21 +27,21 @@ export default function Footer() {
     const [status, setStatus] = useState(null);
     const [loading, setLoading] = useState(false);
 
-     const checkBidStatusfunc = async () => {
-            setLoading(true);
-            setStatus(null);
-            try {
-                if (!phone || !bidNumber) {
-                    setStatus({ bid_status_title: "Введите номер телефона и номер заявки" });
-                    return;
-                }
-                const data = await checkBidStatus(phone, bidNumber);
-                setStatus(data);
-            } catch (error) {
-                setStatus({ bid_status_title: "Ошибка запроса" });
+    const checkBidStatusfunc = async () => {
+        setLoading(true);
+        setStatus(null);
+        try {
+            if (!phone || !bidNumber) {
+                setStatus({ bid_status_title: "Введите номер телефона и номер заявки" });
+                return;
             }
-            setLoading(false);
-        };
+            const data = await checkBidStatus(phone, bidNumber);
+            setStatus(data);
+        } catch (error) {
+            setStatus({ bid_status_title: "Ошибка запроса" });
+        }
+        setLoading(false);
+    };
 
     return (
         <footer className="mt-20 pb-5 w-full bg-white shadow-md lg:pl-20 lg:pr-20">
@@ -54,6 +54,8 @@ export default function Footer() {
                         <div className="flex flex-col lg:flex-row items-center gap-10">
                             <a className="font-bold" href="tel:+84012500700">8(4012) 500-700</a>
                             <button onClick={() => setIsModalOpen(true)} className="bg-[#FFCB00] text-white text-center py-2 px-5 rounded-lg hover:border-[#ffb233] hover:bg-[#ffb233]">Проверить заявку</button>
+                            <button
+                                className="border border-[#FFCB00] text-[#FFCB00] text-center py-2 px-5 rounded-lg"><a href="http://78.36.203.128:50060">Личный кабинет</a></button>
                         </div>
                         <div className="flex mt-10 lg:mt-0 gap-5 items-center">
                             <BsTelegram size={30} color="#0088CC" />
