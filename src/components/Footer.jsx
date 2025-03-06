@@ -58,8 +58,8 @@ export default function Footer() {
                                 className="border border-[#FFCB00] text-[#FFCB00] text-center py-2 px-5 rounded-lg"><a href="http://78.36.203.128:50060">Личный кабинет</a></button>
                         </div>
                         <div className="flex mt-10 lg:mt-0 gap-5 items-center">
-                            <BsTelegram size={30} color="#0088CC" />
-                            <IoLogoWhatsapp size={35} color="#25D366" />
+                            <a href="https://t.me/+79097840433"><BsTelegram size={30} color="#0088CC" /></a>
+                            <a href="https://wa.me/79097840433"><IoLogoWhatsapp size={35} color="#25D366" /></a>
                             <a href="mailto:europacarrent@yandex.ru">europacarrent@yandex.ru</a>
                         </div>
                     </div>
