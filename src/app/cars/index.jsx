@@ -19,6 +19,7 @@ export default function Cars({ data }) {
     const router = useRouter();
     const isDataValidArray = Array.isArray(data);
     const filteredCars = isDataValidArray ? (data.length > 0 ? cars.filter(car => data.includes(car.car_id)) : []) : cars;
+    console.log(cars);
 
     useEffect(() => {
         Cookies.get('authToken') ? setAuthToken(Cookies.get('authToken')) : setAuthToken(null);
@@ -80,33 +81,60 @@ export default function Cars({ data }) {
         );
     }
 
+    const fetchCarPhoto = async (photo_guid) => {
+        if (!photo_guid) return '/image_about.png';
+
+        const authToken = Cookies.get('authToken');
+        if (!authToken) throw new Error('Unauthorized: No token available');
+
+        try {
+            const response = await fetch(`http://78.36.203.128:50500/files/download?fileGuid=${photo_guid}`, {
+                headers: { Authorization: `Bearer ${authToken}` },
+            });
+
+            if (!response.ok) throw new Error(`Failed to load image: ${response.status}`);
+
+            const blob = await response.blob();
+            const imageUrl = URL.createObjectURL(blob);
+            console.log('Image URL:', imageUrl);
+
+            return imageUrl;
+        } catch (error) {
+            console.error('Ошибка загрузки изображения:', error);
+            return '/image_about.png';
+        }
+    };
+
+
     return (
         <div className="text-center p-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
-                {currentCars.length ? currentCars.map(car => (
-                    <div key={car.car_id} className="bg-white flex flex-col justify-between rounded-lg shadow-lg p-4 w-[413] h-[380px]">
-                        <img className="w-full h-40 object-cover rounded-lg" src={car.photo_guid ? `http://78.36.203.128:50500/data_api/${car.photo_guid}` : '/image_about.png'} alt={car.model} />
-                        <div className="mt-4">
-                            <h3 className="text-lg font-semibold">{car.model}</h3>
-                            <div className='flex items-start justify-between'>
-                                <p className="text-gray-500 text-[9px] lg:text-[12px]">Год выпуска: {car.year}</p>
-                                <p className="text-gray-500 text-[9px] lg:text-[12px]">Гос. номер: {car.number}</p>
-                                <p className="text-gray-500 text-[9px] lg:text-[12px]">Город: {car.city_id && cities.find(city => city.city_id === car.city_id)?.title}</p>
-                            </div>
-                            <div>
-                                <button onClick={() => handleCarClick(car)} className="w-full border-[#FFCB00] border text-[#FFCB00] text-center py-2 rounded-lg mt-4 hover:border-[#ffb233] hover:text-[#ffb233]">Подробнее</button>
-                                <button onClick={() => handlePageDetailCars(car)} className="w-full bg-[#FFCB00] text-white text-center py-2 rounded-lg mt-4 font-bold hover:bg-[#ffb233]">Забронировать</button>
+                {currentCars.length ? currentCars.map(car => {
+                    return (
+                        <div key={car.car_id} className="bg-white flex flex-col justify-between rounded-lg shadow-lg p-4 w-[413] h-[380px]">
+                            <img className="w-full h-40 object-cover rounded-lg" src={`http://78.36.203.128:50500/files/download?fileGuid=${car.photo_guid}`} alt={car.model} />
+                            <div className="mt-4">
+                                <h3 className="text-lg font-semibold">{car.model}</h3>
+                                <div className='flex items-start justify-between'>
+                                    <p className="text-gray-500 text-[9px] lg:text-[12px]">Год выпуска: {car.year}</p>
+                                    <p className="text-gray-500 text-[9px] lg:text-[12px]">Гос. номер: {car.number}</p>
+                                    <p className="text-gray-500 text-[9px] lg:text-[12px]">Город: {car.city_id && cities.find(city => city.city_id === car.city_id)?.title}</p>
+                                </div>
+                                <div>
+                                    <button onClick={() => handleCarClick(car)} className="w-full border-[#FFCB00] border text-[#FFCB00] text-center py-2 rounded-lg mt-4 hover:border-[#ffb233] hover:text-[#ffb233]">Подробнее</button>
+                                    <button onClick={() => handlePageDetailCars(car)} className="w-full bg-[#FFCB00] text-white text-center py-2 rounded-lg mt-4 font-bold hover:bg-[#ffb233]">Забронировать</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )) : "Нет доступных автомобилей."}
+                    )
+                }) : "Нет доступных автомобилей."}
             </div>
             <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange} />
             {selectedCar && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 p-4">
                     <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full">
                         <h2 className="text-xl font-bold mb-2">{selectedCar.model} ({selectedCar.year})</h2>
-                        <img className="w-full h-60 object-cover rounded-lg mb-4" src={selectedCar.photo_guid ? `http://78.36.203.128:50500/data_api/${selectedCar.photo_guid}` : '/image_about.png'} alt={selectedCar.model} />
+                        <img className="w-full h-60 object-cover rounded-lg mb-4" src={`http://78.36.203.128:50500/files/download?fileGuid=${selectedCar.photo_guid}`} alt={selectedCar.model} />
                         <div className='flex justify-between'>
                             <p><strong>Год выпуска:</strong> {selectedCar.year}</p>
                             <p><strong>Гос.номер:</strong> {selectedCar.number}</p>
