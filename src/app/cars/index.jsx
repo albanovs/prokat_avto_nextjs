@@ -85,9 +85,10 @@ export default function Cars({ data }) {
         <div className="text-center p-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">
                 {currentCars.length ? currentCars.map(car => {
+                    const imageUrl = `${window.location.protocol}//78.36.203.128:50500/files/download?fileGuid=${car.photo_guid}`;
                     return (
                         <div key={car.car_id} className="bg-white flex flex-col justify-between rounded-lg shadow-lg p-4 w-[413] h-[380px]">
-                            <img className="w-full h-40 object-cover rounded-lg" src={`http://78.36.203.128:50500/files/download?fileGuid=${car.photo_guid}`} alt={car.model} />
+                            <img className="w-full h-40 object-cover rounded-lg" src={imageUrl} alt={car.model} />
                             <div className="mt-4">
                                 <h3 className="text-lg font-semibold">{car.model}</h3>
                                 <div className='flex items-start justify-between'>
