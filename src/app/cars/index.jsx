@@ -81,31 +81,6 @@ export default function Cars({ data }) {
         );
     }
 
-    const fetchCarPhoto = async (photo_guid) => {
-        if (!photo_guid) return '/image_about.png';
-
-        const authToken = Cookies.get('authToken');
-        if (!authToken) throw new Error('Unauthorized: No token available');
-
-        try {
-            const response = await fetch(`http://78.36.203.128:50500/files/download?fileGuid=${photo_guid}`, {
-                headers: { Authorization: `Bearer ${authToken}` },
-            });
-
-            if (!response.ok) throw new Error(`Failed to load image: ${response.status}`);
-
-            const blob = await response.blob();
-            const imageUrl = URL.createObjectURL(blob);
-            console.log('Image URL:', imageUrl);
-
-            return imageUrl;
-        } catch (error) {
-            console.error('Ошибка загрузки изображения:', error);
-            return '/image_about.png';
-        }
-    };
-
-
     return (
         <div className="text-center p-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 justify-center">

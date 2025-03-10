@@ -85,7 +85,7 @@ export default function SelectedCar() {
                 <div className="w-full bg-white shadow-lg p-5">
                     <div className="w-full h-60 md:h-96 overflow-hidden rounded-xl">
                         <img
-                            src={selectedCar.image || '/image_about.png'}
+                            src={`http://78.36.203.128:50500/files/download?fileGuid=${selectedCar.photo_guid}`}
                             alt={selectedCar.name}
                             className="w-full h-full object-cover"
                         />
